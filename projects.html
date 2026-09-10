@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>More Projects — Nadeen Osama</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+	:root{
+		--bg:#1a1330;
+		--bg-alt:#221a3d;
+		--card:#2f2452;
+		--card-line:#4a3b78;
+		--violet:#8b5cf6;
+		--magenta:#d946a8;
+		--ink:#f4f1fa;
+		--ink-dim:#a99cc7;
+		--ink-faint:#6f6191;
+	}
+	*{box-sizing:border-box;}
+	html{scroll-behavior:smooth;}
+	body{
+		margin:0;
+		background:var(--bg);
+		color:var(--ink);
+		font-family:'Inter',sans-serif;
+		font-weight:400;
+		line-height:1.6;
+	}
+	h1,h2,h3{
+		font-family:'Space Grotesk',sans-serif;
+		font-weight:700;
+		margin:0;
+	}
+	a{color:inherit;}
+
+	/* Nav */
+	header{
+		display:flex;
+		align-items:center;
+		justify-content:space-between;
+		padding:1.4rem clamp(1.5rem,5vw,4rem);
+		background:linear-gradient(100deg,#6d28d9,#a21caf);
+	}
+	header .logo{
+		font-family:'Space Grotesk',sans-serif;
+		font-weight:700;
+		font-size:1.15rem;
+		letter-spacing:0.01em;
+	}
+	header nav ul{
+		list-style:none;
+		display:flex;
+		gap:2.2rem;
+		margin:0;
+		padding:0;
+	}
+	header nav a{
+		text-decoration:none;
+		font-size:0.92rem;
+		color:#e9defc;
+		position:relative;
+		padding-bottom:4px;
+	}
+	header nav a.active{color:#fff;}
+	header nav a.active::after{
+		content:"";
+		position:absolute;
+		left:0;
+		bottom:0;
+		width:100%;
+		height:2px;
+		background:#fff;
+		transform:skewX(-15deg);
+	}
+	header nav a:hover::after{
+		content:"";
+		position:absolute;
+		left:0;
+		bottom:0;
+		width:100%;
+		height:2px;
+		background:#e9defc99;
+		transform:skewX(-15deg);
+	}
+
+	/* Page intro */
+	.intro{
+		padding:clamp(2.5rem,6vw,4.5rem) clamp(1.5rem,5vw,4rem) 1rem;
+	}
+	.intro h1{
+		font-size:clamp(2rem,4vw,2.75rem);
+		display:inline-block;
+	}
+	.intro .rule{
+		width:120px;
+		height:4px;
+		margin-top:0.85rem;
+		background:linear-gradient(90deg,var(--violet),var(--magenta));
+		transform:skewX(-20deg);
+		transform-origin:left;
+	}
+	.intro p{
+		margin-top:1.1rem;
+		max-width:46ch;
+		color:var(--ink-dim);
+		font-size:0.98rem;
+	}
+
+	/* Section */
+	.section{
+		padding:2.2rem clamp(1.5rem,5vw,4rem) 3rem;
+	}
+	.section h2{
+		font-size:1.4rem;
+	}
+	.section .rule-sm{
+		width:64px;
+		height:3px;
+		margin-top:0.6rem;
+		margin-bottom:2.2rem;
+		background:linear-gradient(90deg,var(--magenta),transparent);
+		transform:skewX(-20deg);
+		transform-origin:left;
+	}
+
+	.grid{
+		display:grid;
+		grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+		gap:1.5rem;
+		align-items:stretch;
+	}
+
+	/* Cards */
+	.card{
+		background:var(--card);
+		border:1px solid var(--card-line);
+		padding:1.8rem 1.6rem;
+		clip-path:polygon(0 14px, 14px 0, 100% 0, 100% 100%, 0 100%);
+		display:flex;
+		flex-direction:column;
+		gap:0.7rem;
+		transition:border-color .18s ease, transform .18s ease;
+	}
+	.card:hover{
+		border-color:var(--violet);
+		transform:translateY(-3px);
+	}
+	.card.featured{
+		background:linear-gradient(160deg,#3a2c66,#2c2154);
+		border-color:var(--violet);
+	}
+	.card h3{
+		font-size:1.08rem;
+	}
+	.card .tag{
+		align-self:flex-start;
+		font-size:0.72rem;
+		color:var(--magenta);
+		border:1px solid currentColor;
+		padding:0.15rem 0.55rem;
+		clip-path:polygon(0 6px, 6px 0, 100% 0, 100% 100%, 0 100%);
+	}
+	.card p{
+		color:var(--ink-dim);
+		font-size:0.9rem;
+		margin:0;
+		flex-grow:1;
+	}
+	.card .stack{
+		font-size:0.78rem;
+		color:var(--ink-faint);
+	}
+	.card .go{
+		margin-top:0.4rem;
+		font-size:0.86rem;
+		text-decoration:none;
+		color:var(--ink);
+		display:inline-flex;
+		align-items:center;
+		gap:0.4rem;
+		width:fit-content;
+		border-bottom:1px solid var(--violet);
+		padding-bottom:2px;
+	}
+	.card .go:hover{color:#fff; border-color:var(--magenta);}
+
+	/* Empty / upcoming cards */
+	.card.empty{
+		background:transparent;
+		border:1px dashed var(--card-line);
+		color:var(--ink-faint);
+		justify-content:center;
+		align-items:flex-start;
+		min-height:180px;
+	}
+	.card.empty h3{
+		font-size:0.98rem;
+		color:var(--ink-faint);
+		font-weight:500;
+		font-family:'Inter',sans-serif;
+	}
+	.card.empty p{
+		font-size:0.85rem;
+	}
+	.card.empty a{
+		font-size:0.85rem;
+		color:var(--ink-dim);
+		text-decoration:underline;
+		text-underline-offset:3px;
+	}
+	.card.empty a:hover{color:var(--magenta);}
+
+	footer{
+		padding:2rem clamp(1.5rem,5vw,4rem) 2.5rem;
+		border-top:1px solid var(--card-line);
+		color:var(--ink-faint);
+		font-size:0.8rem;
+		display:flex;
+		justify-content:space-between;
+		flex-wrap:wrap;
+		gap:0.6rem;
+	}
+	footer a{color:var(--ink-dim); text-decoration:none;}
+	footer a:hover{color:var(--magenta);}
+
+	@media(max-width:520px){
+		header{flex-direction:column; align-items:flex-start; gap:0.9rem;}
+		header nav ul{gap:1.4rem;}
+	}
+</style>
+</head>
+<body>
+
+	<header>
+		<div class="logo">Nadeen Osama</div>
+		<nav>
+			<ul>
+				<li><a href="index2.html">Home</a></li>
+				<li><a href="projects.html" class="active">Projects</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div class="intro">
+		<h1>More Projects</h1>
+		<div class="rule"></div>
+		<p>A closer look at the analysis work I've shipped, and what's next in the pipeline.</p>
+	</div>
+
+	<section class="section">
+		<h2>Completed</h2>
+		<div class="rule-sm"></div>
+		<div class="grid">
+			<div class="card featured">
+				<span class="tag">Case study</span>
+				<h3>Udemy Courses Analytics</h3>
+				<p>Explored pricing, enrollment, and category trends across thousands of Udemy courses to surface what drives student demand.</p>
+				<span class="stack">Python · Pandas · Matplotlib</span>
+				<a class="go" href="https://github.com/Moon124-bit/Udemy-Courses-Analytics-/tree/main">View repository &nbsp;↗</a>
+			</div>
+			<div class="card empty">
+				<h3>Next case study</h3>
+				<p>A second completed analysis will land here soon.</p>
+			</div>
+			<div class="card empty">
+				<h3>Next case study</h3>
+				<p>A third completed analysis will land here soon.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<h2>In progress</h2>
+		<div class="rule-sm"></div>
+		<div class="grid">
+			<div class="card empty">
+				<h3>Dashboard project</h3>
+				<p>Currently building — check back for a walkthrough.</p>
+			</div>
+			<div class="card empty">
+				<h3>SQL deep-dive</h3>
+				<p>Currently building — check back for a walkthrough.</p>
+			</div>
+			<div class="card empty">
+				<h3>Have a project in mind?</h3>
+				<p>I'm open to new data work.</p>
+				<a href="index2.html#three">Get in touch →</a>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<span>&copy; Nadeen Osama</span>
+		<a href="index2.html#three">Contact</a>
+	</footer>
+
+</body>
+</html>
